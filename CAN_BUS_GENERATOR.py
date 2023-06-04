@@ -6,11 +6,11 @@ bus = can.interface.Bus(bustype='virtual', channel='vcan0')
 
 # Messages identifiers for each device
 message_identifiers = {
-    "BMS1": list(range(0x410, 0x41f)),
-    "BMS2": list(range(0x420, 0x42f)),
-    "BMS3": list(range(0x430, 0x43f)),
-    "BMS4": list(range(0x440, 0x44f)),
-    "BMS5": list(range(0x450, 0x45f))
+    "BMS1": list(range(0x410, 0x418)),
+    "BMS2": list(range(0x420, 0x428)),
+    "BMS3": list(range(0x430, 0x438)),
+    "BMS4": list(range(0x440, 0x448)),
+    "BMS5": list(range(0x450, 0x458))
 }
 
 # Signals for each message
@@ -33,7 +33,7 @@ iterator = 0
 while 1:
     start_time = time.perf_counter()
     if(iterator > 1000):
-        iterator = 0    
+        iterator = 0
 
     for device, identifiers in message_identifiers.items():
         for identifier in identifiers:
@@ -58,4 +58,4 @@ while 1:
     execution_time = end_time - start_time  # Calculate execution time
 
     if execution_time < 10:
-        time.sleep(0.12 - execution_time)  # Sleep for the remaining time
+        time.sleep(1 - execution_time)  # Sleep for the remaining time
