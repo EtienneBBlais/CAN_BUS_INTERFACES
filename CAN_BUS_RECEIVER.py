@@ -37,6 +37,7 @@ def parse_message(bms, cells_id, data):
     for i in cells_message:
         voltages[4][i] = voltage[j]
         j += 1
+    print(voltages)
 
 def receive_message(bus):
     message = bus.recv()  # Blocking receive
@@ -47,11 +48,19 @@ def receive_message(bus):
             parse_message(bms, cells_id, message.data)
 
 
+
 def main():
     # Use 'pcan' interface and appropriate channel
     bus = can.interface.Bus(channel='PCAN_USBBUS1', bustype='pcan', bitrate=250000)
     while True:
         receive_message(bus)
+
+def InitierCAN():
+    # Use 'pcan' interface and appropriate channel
+    bus = can.interface.Bus(channel='PCAN_USBBUS1', bustype='pcan', bitrate=250000)
+    while True:
+        receive_message(bus)
+
 
 if __name__ == "__main__":
     main()

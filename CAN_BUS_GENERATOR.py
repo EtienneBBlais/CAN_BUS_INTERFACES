@@ -1,3 +1,9 @@
+# Auteur: Étienne Bellerive-Blais
+# Date de création: 2023-06-11
+# Nom du fichier: CAN_BUS_GENERATOR.py
+# Description:
+#
+
 import can
 import time
 import importationBMSLOG1
