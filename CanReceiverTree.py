@@ -48,6 +48,10 @@ class Ui_Form(object):
                 item.setForeground(1, black_font)
                 item.parent().setForeground(0, black_font)
 
+            can_id = CAN_BUS_RECEIVER.get_can_id(bms_index, cell_index)
+            item.setText(3, f"0x{can_id:X}")  # Set the CAN ID in the fourth column in hexadecimal with '0x' prefix
+
+
     def setupUi(self, Form):
 
         Form.setWindowIcon(QIcon('iconMoto.png'))
@@ -61,7 +65,7 @@ class Ui_Form(object):
         font = QtGui.QFont()
         font.setPointSize(15)
         self.TableauPrincipal.headerItem().setFont(0, font)
-        self.TableauPrincipal.setHeaderLabels(["Batteries", "Valeur", "Unité"])
+        self.TableauPrincipal.setHeaderLabels(["Batteries", "Valeur", "Unité", "CAN ID"])
         self.TableauPrincipal.setColumnWidth(0, 150)
         # Number of batteries, tensions, temperatures
         nb_batteries = 6
@@ -77,7 +81,7 @@ class Ui_Form(object):
 
 
             batterie = QtWidgets.QTreeWidgetItem(self.TableauPrincipal)
-            batterie.setText(0, f"Batterie {b + 1}")
+            batterie.setText(0, f"Batterie {b}")
 
             tensions = QtWidgets.QTreeWidgetItem(batterie)
             tensions.setText(0, "Tensions")

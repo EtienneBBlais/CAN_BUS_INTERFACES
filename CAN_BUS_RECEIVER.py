@@ -61,6 +61,13 @@ def InitierCAN():
     while True:
         receive_message(bus)
 
+def get_can_id(bms_index, cell_index):
+    cell_id = cell_index % 4  # Get the id of the cell within the message
+    msg_id = cell_index // 4  # Get the id of the message within the BMS
+    can_id = bms_id[bms_index][msg_id]
+    return can_id
+
+
 
 if __name__ == "__main__":
     main()
