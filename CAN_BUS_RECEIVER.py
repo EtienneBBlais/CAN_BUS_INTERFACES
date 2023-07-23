@@ -56,10 +56,15 @@ def main():
         receive_message(bus)
 
 def InitierCAN():
-    # Use 'pcan' interface and appropriate channel
-    bus = can.interface.Bus(channel='PCAN_USBBUS1', bustype='pcan', bitrate=250000)
-    while True:
-        receive_message(bus)
+    global can_bus_error
+    try:
+        with can.interface.Bus(channel='PCAN_USBBUS1', bustype='pcan', bitrate=250000) as bus:
+            while True:
+                receive_message(bus)
+    except Exception as e:
+        print(f"Failed to initialize CAN bus: {e}")
+        can_bus_error = True  # Set the flag
+
 
 def get_can_id(bms_index, cell_index):
     cell_id = cell_index % 4  # Get the id of the cell within the message

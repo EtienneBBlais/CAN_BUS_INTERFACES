@@ -17,6 +17,8 @@ from PyQt6.QtGui import QIcon
 from playsound import playsound
 from pygame import mixer
 
+can_bus_error = False  # Global flag
+
 
 class Ui_Form(object):
 
@@ -124,4 +126,6 @@ if __name__ == "__main__":
 
     sys.exit(app.exec())
 
+
+## pyinstaller --onefile --windowed --add-data 'iconMoto.png;.' --add-data 'siren.mp3;.' canReceiverTree.py
 
